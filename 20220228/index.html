@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    console.log('객체 연습문제')
+    console.log('-------------')
+    console.log(1)
+    console.log('3번')
+
+    console.log(2)
+    console.log(`let test = function() {
+console.log("테스트함수 입니다.")
+}`)
+
+    console.log(3)
+    console.log(`let add = (a,b) => {return a+b}`)
+    console.log(`let messagerAlert = () => {alert("화살표식 함수로 바꿨습니다.")}`)
+    
+    console.log(4)
+    console.log(`PlusPlus(n-1)`)
+
+    console.log(5)
+    console.log('4번')
+    console.log(6)
+    let myDog = {
+      name: "Happy",
+      friends: ["Mini", "Choco"],
+    };
+    myDog.bark = function() {
+      console.log("bow-wow")
+    }
+    myDog.bark()
+
+    console.log(7)
+    console.log(`let books = {
+name : 'Nature of Code',
+price : 30000 + "DNJS",
+author : "다니엘 쉬프만",
+ISBN : 9788968481901,
+page : 620 + "페이지"
+}`)
+
+    console.log(8)
+    console.log(`
+function Product(name, weight, price) {
+  this.name = name
+  this.weight = weight
+  this.price = price
+  this.calculate = function(w) {
+    w = w * 0.01
+    return this.price * w + " 원"
+  }
+}
+
+let pig = new Product("돼지삼겹살", 100, 1690)
+    `)
+
+    console.log(`
+    
+    
+    
+
+
+    
+    `)
+    console.log("실습문제")
+    console.log("-------------")
+    console.log(1)
+    function power(a, b) {
+      let c = a
+      a = a * a
+      for (let i = 2; i < b; i++) {
+        a = a * c
+      }
+      return a
+    }
+    console.log(power(2,3))
+
+    console.log(2)
+    function multifly() {
+      let a = 1
+      for (let i of arguments) {
+        a *= i
+      }
+      return a
+    }
+
+    console.log(multifly(1,2,3,4,5))
+
+    console.log(3)
+    function meerAt(a, b, c) {
+      if (a && b && c) {
+        return a + "/" + b + "/" + c
+      } else if (a && b) {
+        return a + "년 " + b + "월"
+      } else if (a) {
+        return a + "년"
+      }
+    }
+
+    console.log(meerAt(1993, 6, 25))
+
+    console.log(4)
+    const myStorage = {
+      car: {
+        inside: {
+          glove_box: "maps",
+          passenger_seat: "crumbs"
+        },
+        outside: {
+          trunk: "jack"
+        }
+      }
+    }
+
+    console.log(myStorage.car.inside.glove_box)
+
+    console.log(5)
+    function Product2(name, pay) {
+      this.name = name
+      this.pay = pay
+      this.keep = function() {
+        return this.name + " 을 보관했습니다."
+      }
+      this.getPay = function() {
+        return this.pay
+      }
+    }
+    let book = new Product2("book", 6000)
+    let pencil = new Product2("pencil", 2000)
+    let hat = new Product2("hat", 8000)
+    console.log(book, pencil, hat)
+    console.log(6)
+    function User(id, money) {
+      this.id = id
+      this.money = money
+      this.buylist = []
+      this.charge = function(a) {
+        this.money += a
+      }
+      this.buy = function(a) {
+        this.money -= a.getPay()
+        this.buylist.push(a.name)
+      }
+    }
+
+    let harry = new User('harry', 10000)
+    harry.buy(book)
+    console.log(harry)
+    console.log(`
+    
+    
+    
+
+
+    
+    `)
+    console.log("응용문제")
+    console.log("-------------")
+    console.log(1)
+    function lcm(a, b) {
+      let answer = []
+      for (let i = 1; i <= a; i++) {
+        if ((i * b) % a == 0) {
+          answer.push(i * b)
+        }
+      }
+      console.log(Math.min.apply(null, answer))
+    }
+    lcm(671, 85)
+
+    console.log(2)
+    let myProfile = {
+      name: '김개발',
+      address: {
+        email: 'geabal@gmail.com',
+        home: '위워크'
+      },
+      'my favorite': {
+          food: [{
+              name: '샐러드',
+              price: 3500
+            }, {
+              name: '삼겹살',
+              price: 15000
+          }],
+        hobby: ['축구']
+      }
+    }
+
+    function getAnswer(a) {
+      return a['my favorite'].food[0].name
+    }
+
+    console.log(getAnswer(myProfile))
+
+    console.log(3)
+
+    function Profile(name, phoneNumber) {
+      this.name = name
+      this.phoneNumber = phoneNumber
+      this.calling = function() {
+        return this.name + " 에게 전화하고 있습니다."
+      }
+    }
+
+    let profileList = [
+      ['Harry', 0543236543],
+      ['Sherlock', 0994372684],
+      ['John', 0120331254],
+    ]
+
+    let profileBook = []
+
+    for (let i in profileList) {
+      profileBook.push(new Profile(profileList[i][0], profileList[i][1]))
+    }
+
+    console.log(profileBook[0])
+  </script>
+</body>
+</html>

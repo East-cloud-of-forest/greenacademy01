@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function printCenter(a) {
+      if (a.length % 2 == 0) {
+        let n = a.length / 2 - 1
+        let m = a.length / 2 + 1
+
+        return a.slice(n, m)
+      } else {
+        let n = Math.ceil(a.length / 2)
+
+        return a.charAt(n)
+      }
+    }
+
+    console.log(printCenter("hell"))
+
+    let quizArray = [
+      {quiz: "1+1",
+      answer: "2"},
+      {quiz: "2+2",
+      answer: "4"},
+      {quiz: "3+3",
+      answer: "6"},
+      {quiz: "4+4",
+      answer: "8"},
+    ]
+
+    function randomQuiz(quizArray, n) {
+      col = 0
+      for (let i = 0; i < n; i++) {
+        let rn = parseInt(Math.random() * 4)
+        answer = prompt(quizArray[rn].quiz)
+        if (answer == quizArray[rn].answer) {
+          col++
+        }
+      }
+      
+      console.log("총 " + n + " 문제중" + col + "개 맞췄습니다.")
+    }
+
+    randomQuiz(quizArray, 4)
+  </script>
+</body>
+</html>
