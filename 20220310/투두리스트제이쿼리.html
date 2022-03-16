@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+<body>
+  <h1>투두리스트</h1>
+  <form id="todoForm">
+    <input type="text" id="todoText" placeholder="할일을 입역해주세요.">
+    <input type="submit" value="+" id="todoBtn">
+  </form>
+  <blockquote id="todoList"></blockquote>
+  <p></p>
+
+  <script>
+    let count = 0
+    function listCount(c) {
+      $("p").text(`남은 할일 : ${c}개`)
+    }
+    listCount(count)
+
+    $("#todoForm").on("submit", function(e) {
+      e.preventDefault();
+      count++
+      listCount(count)
+
+      if ($("#todoText").val()) {
+        $("#todoList").append($("<form>")
+          .append($("<input>").prop("type", "checkbox").on("click", function() {
+            if ($(this).prop("checked")) {
+              $(this).next().css("color", "gray")
+              count--
+              listCount(count)
+            } else {
+              $(this).next().css("color", "black")
+              count++
+              listCount(count)
+            }
+          }))
+          .append($("<span>").text($("#todoText").val()))
+          .append($("<input>").prop("type", "button").prop("value", "X").on("click", function() {
+            $(this).parent().remove()
+            
+            if(!$(this).prev().prev().prop("checked")) {
+              count--
+              listCount(count)
+            }
+          }))
+        )
+      }
+
+      $("#todoText").val("")
+    })
+  </script>
+</body>
+</html>
