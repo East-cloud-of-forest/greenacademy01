@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|material+Icons" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <style>
+    .slide {
+      transform : scale(1);
+      transition : 0.2s;
+    }
+
+    .slide:hover {
+      transform : scale(1.03);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <v-app>
+      <v-app-bar app dark color="primary">
+        <v-app-bar-nav-icon @click="navtoggle=true"></v-app-bar-nav-icon>
+        <v-toolbar-title>부산 관광 안내</v-toolbar-title>
+      </v-app-bar>
+
+      <v-navigation-drawer absolute temporary v-model="navtoggle">
+        <v-toolbar flat height="70px">
+          <v-list>
+            <v-list-item>
+              <v-list-item-avatar>
+                <v-icon large>mdi-account-circle</v-icon>
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title>즐거운 부산</v-list-item-title>
+                <v-list-item-subtitle>다이나믹 부산</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+          <v-divider></v-divider>
+
+          <v-list>
+            <v-list-item v-for="(n, i) in navlist" :key="i" @click="" href="#">
+              <v-list-item-action>
+                <v-icon large>{{n.icon}}</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title>
+                  {{n.title}}
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-toolbar>
+      </v-navigation-drawer>
+
+      <v-main>
+        <v-container class="text-center pt-10">
+          <h1>현재 인기 있는 곳입니다</h1>
+          <p>추천을 통해 인기있는 곳을 골라주세요</p>
+        </v-container>
+
+        <v-container class="pt-0">
+          <v-row>
+            <v-col cols="12" sm="6" v-for="(n ,i) in citylist" :key="i">
+              <v-card class="slide">
+                <v-img :src="n.src" aspect-ratio="2.0"></v-img>
+                <v-card-text class="black--text">
+                  <v-card-title class="pa-0">{{n.name}}</v-card-title>
+                </v-card-text>
+                <v-card-actions>
+                  <h3>{{n.good}}</h3>
+                  <v-spacer></v-spacer>
+                  <v-btn @click="good(i)" class="success">추천</v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-col>
+            <v-col>
+              <v-card>
+                <v-slide-x-transition group>
+                  <v-card-actions class="pl-5" v-for="(n, i) in goodlist" :key="i">
+                    <p v-if="n" class="ma-0">{{n}}을 추천합니다.</p>
+                  </v-card-actions>
+                </v-slide-x-transition>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      data: {
+        navtoggle: false,
+        navlist: [
+          { icon: "mdi-card-bulleted-outline", title: "메인페이지" },
+          { icon: "mdi-clipboard-outline", title: "관광지소개" },
+          { icon: "mdi-check", title: "추천명소" },
+        ],
+        citylist: [
+          {
+            src: 'https://w.namu.la/s/6c4819ce20e731e3b3a78409decd9d4e2360cf918ff00b36d70a0a177f8fb98cdbb284f20b3adfd96aaffd1e2c1be6941e7734cde21aca79149ba4b1787c0fdfe1d6dfd717f1ffa4aaab55f5dff33396042eacb8e0acd3aa5bd64c03ee3678d1',
+            name: '해운대',
+            good: 0
+          },
+          {
+            src: 'https://t1.daumcdn.net/cfile/blog/1872743950DC347831',
+            name: '바다 도시 야경',
+            good: 0
+          },
+          {
+            src: 'https://youimg1.tripcdn.com/target/10081f000001gqh6a209E_C_750_420.jpg_.webp?proc=source%2Ftrip',
+            name: '광안대교',
+            good: 0
+          },
+          {
+            src: 'https://mblogthumb-phinf.pstatic.net/20120904_173/blueloveba_1346684804167xBOBJ_JPEG/2012-08-27_12%3B04%3B51.PNG?type=w2',
+            name: '해운대 인어동상',
+            good: 0
+          },
+        ],
+        goodlist : [],
+      },
+      methods: {
+        good(i) {
+          this.citylist[i].good++
+          this.goodlist.push(this.citylist[i].name)
+        },
+      },
+    })
+  </script>
+</body>
+
+</html>
