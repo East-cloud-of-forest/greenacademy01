@@ -23,8 +23,6 @@ export default {
         })
     },
     methods : {
-
-        // axios를 이용해 제출 버튼을 눌렀을때 값을 보내줌 - post
         upadatememo() {
             this.$http.put('/api/memo/'+this.$route.params.id,{
                 data : {
