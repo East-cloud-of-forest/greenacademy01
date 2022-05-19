@@ -62,8 +62,11 @@ class MemoComp extends Component {
         </button>
         <ul>
           {memo.map((a) => (
-            <li key={a.id} onClick={() => {this.deleteMemo(a.id)}}>
+            <li key={a.id}>
               {a.text}
+              <button
+                onClick={() => {this.deleteMemo(a.id)}}
+              >X</button>
             </li>
           ))}
         </ul>
